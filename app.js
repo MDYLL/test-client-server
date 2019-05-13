@@ -1,9 +1,10 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var app = express();
-
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let logger = require('morgan');
+let app = express();
+const cors = require('cors');
+app.use(cors());
 let score=15;
 
 app.get('/',(req,res,next)=>{
@@ -12,18 +13,18 @@ app.get('/',(req,res,next)=>{
   res.sendStatus(200);
 });
 
-const bodyParser = require("body-parser");
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-app.use(bodyParser.json());
 
-//app.use(express.bodyParser());
-
-app.post("/", function (req, res) {
+app.post("/", function (req, res,next) {
+  res.header("Access-Control-Allow-Origin", "*");
   console.log(req);
   score=req.body.score;
+  res.json(score);
   res.sendStatus(200);
 });
 
