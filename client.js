@@ -15,10 +15,14 @@ function get() {
 }
 
 function post() {
-    alert("Post");
+
     let score = parseFloat(document.getElementById('post').value);
-    fetch('/', {
+
+    fetch('http://localhost:3003/', {
         method: 'POST',
+        headers: {
+            'Content-Type':"application/json; charset=utf-8"
+        },
         body: JSON.stringify({
             score:score
         })
