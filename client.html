@@ -1,24 +1,27 @@
-<!DOCTYPE html>
+<!DOCUMENT HTML>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>client</title>
-    <!--<link href="external.css" rel="stylesheet">-->
+    <meta charset = "UTF-8">
+    <title>XO</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
 </head>
 <body>
-<p>
-    <button onclick="get()">Get !</button>
-    <input type="number" id="post">
-    <button onclick="post()">Post !</button>
-
-
-</p>
-<p id="message"></p>
-<p id="count"></p>
-<form id="list">
-
-</form>
-
-<script src="client.js"></script>
+<div id="thepole">
+    <button class="pole" id="pole0" onclick="turn(0);"></button>
+    <button class="pole" id="pole1" onclick="turn(1);"></button>
+    <button class="pole" id="pole2" onclick="turn(2);"></button>
+    <button class="pole" id="pole3" onclick="turn(3);"></button>
+    <button class="pole" id="pole4" onclick="turn(4);"></button>
+    <button class="pole" id="pole5" onclick="turn(5);"></button>
+    <button class="pole" id="pole6" onclick="turn(6);"></button>
+    <button class="pole" id="pole7" onclick="turn(7);"></button>
+    <button class="pole" id="pole8" onclick="turn(8);"></button>
+</div>
+<div id="restart">
+    <button onclick="begin()">Start !</button>
+    <p id="message"></p>
+    <p id="gameInfo"></p>
+</div>
 </body>
 </html>
