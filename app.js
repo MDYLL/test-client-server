@@ -8,15 +8,6 @@ let flag = true;
 let turns = 0;
 const apiURL = "http://localhost:3003/";
 
-function restart() {
-    gameID = -1;
-    myTurn = 0;
-    board = "111111111";
-    flag = true;
-    turns = 0;
-
-}
-
 function gameOver(result) {
     console.log(result);
     if (result === 4) {
@@ -26,7 +17,7 @@ function gameOver(result) {
     } else {
         infoElement.innerText = "You lose!";
     }
-    restart();
+    gameID=-1;
 }
 
 function fillBoard(board) {
@@ -77,7 +68,11 @@ function checkWin() {
 }
 
 function begin() {
-    let gameID = -1;
+    if (gameID!==-1){
+        return;
+    }
+    board="111111111";
+    gameID = -1;
     fillBoard(board);
     fetch(apiURL + "?id=begin")
         .then((response) => {
@@ -115,8 +110,7 @@ function game() {
     if (result != 0) {
         gameOver(result);
         return;
-    }
-    if (myTurn === 1) {
+    } else if (myTurn === 1) {
         infoElement.innerText = "Ваш ход";
     } else {
         infoElement.innerText = "Ожидается ход соперника";
@@ -127,20 +121,11 @@ function game() {
                 clearInterval(interval);
                 myTurn = 1;
                 fillBoard(board);
-                //game();
-                let result = checkWin();
-                if (result != 0) {
-                    gameOver(result);
-                    return;
-                }
+                game();
             }
         }, 1000);
-        let result = checkWin();
-        if (result != 0) {
-            gameOver(result);
-            return;
-        }
     }
+
 }
 
 
